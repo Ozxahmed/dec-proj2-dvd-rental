@@ -17,6 +17,6 @@ if __name__ == "__main__":
     )
 
     if airbyte_client.valid_connection():
-        airbyte_client.trigger_sync(
+        airbyte_client.trigger_job(
             connection_id=AIRBYTE_CONNECTION_ID
     )
