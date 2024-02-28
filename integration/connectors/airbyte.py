@@ -32,7 +32,7 @@ class AirbyteClient(object):
                 f"Invalid Airbyte connection. Status code: {e.response.status_code}. Error message: {e.response.text}"
             )
     
-    def trigger_job(self, connection_id: str, job_type: Literal["reset", "sync"] = "sync", sleep_seconds: int = 5) -> None:
+    def trigger_job(self, connection_id: str, job_type: Literal["reset", "sync"] = "sync", polling_seconds: int = 5) -> None:
         """Trigger job (reset or sync) for a connection_id"""
         post_url = f"http://{self.server_name}:8006/v1/jobs"
         post_payload = {
@@ -48,9 +48,9 @@ class AirbyteClient(object):
         
         while job_status == "running":
             logging.info(
-                f"Job {job_id} is running. Polling job status again in {sleep_seconds} seconds."
+                f"Job {job_id} is running. Polling job status again in {polling_seconds} seconds."
             )
-            time.sleep(sleep_seconds)
+            time.sleep(polling_seconds)
 
             get_url = f"http://{self.server_name}:8000/api/v1/jobs/get"
             get_payload = {"id": job_id}
