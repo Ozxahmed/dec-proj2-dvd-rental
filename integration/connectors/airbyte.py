@@ -28,7 +28,7 @@ class AirbyteClient(object):
 
             return True
         except Exception as e:
-            raise requests.exceptions.ConnectionError(
+            raise Exception(
                 f"Invalid Airbyte connection. Status code: {e.response.status_code}. Error message: {e.response.text}"
             )
     
