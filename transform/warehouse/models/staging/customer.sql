@@ -1,14 +1,15 @@
 
 
-select 
+select  
+    customer_id,
+    email, 
     active, 
-    store_id,
+    activebool,
+    store_id, 
     first_name,
-    last_name, 
-    activebool, 
+    last_name,
     address_id,
     create_date,
-    customer_id,
     last_update
     
 from {{ source('movie_rental', 'customer') }}

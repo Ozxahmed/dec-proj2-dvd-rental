@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_address
+    columns:
+      - name: address_id
+        description: Change this to The surrogate key of the address
+        tests:
+          - not_null
+          - unique
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        description: Change this to The surrogate key of the customer
+        tests:
+          - not_null
+          - unique

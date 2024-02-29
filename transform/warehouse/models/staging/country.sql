@@ -2,7 +2,7 @@
 
 
 select 
-    country 
+    country, 
     country_id, 
     last_update
     

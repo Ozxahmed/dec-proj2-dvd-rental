@@ -2,7 +2,8 @@
 
 select 
     phone,
-    address, 
+    address,
+    address_id, 
     city_id, 
     address2, 
     district, 
