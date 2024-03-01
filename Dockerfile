@@ -8,4 +8,4 @@ RUN pip install --upgrade pip
 COPY . .
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["bash", "build_dbt.sh"]
+ENTRYPOINT ["bash", "orchestrator.sh"]
