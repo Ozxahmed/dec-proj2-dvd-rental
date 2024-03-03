@@ -8,4 +8,4 @@ RUN pip install --upgrade pip
 COPY . .
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["bash", "orchestrator.sh"]
+ENTRYPOINT ["bash", "orchestrate.sh"]
