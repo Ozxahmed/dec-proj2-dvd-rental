@@ -43,3 +43,7 @@ models:
     marts:
       +schema: marts
       +materialized: table
+
+    reports:
+      +schema: reports
+      +materialized: table
