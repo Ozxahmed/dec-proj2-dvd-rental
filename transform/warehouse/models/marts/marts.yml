@@ -5,12 +5,16 @@ models:
     columns:
       - name: address_id
         description: Change this to The surrogate key of the address
-        tests:
-          - not_null
-          - unique
   - name: dim_customer
     columns:
       - name: customer_id
+        description: Change this to The surrogate key of the customer
+        tests:
+          - not_null
+          - unique
+  - name: dim_staff
+    columns:
+      - name: staff_id
         description: Change this to The surrogate key of the customer
         tests:
           - not_null

@@ -1,11 +1,11 @@
 
 
 select 
-    phone,
+    address_id,
     address,
-    address_id, 
+    address2,
+    phone,
     city_id, 
-    address2, 
     district, 
     postal_code, 
     last_update
