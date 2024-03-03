@@ -19,3 +19,17 @@ models:
         tests:
           - not_null
           - unique
+  - name: dim_film
+    columns:
+      - name: film_id
+        description: ID of each film
+        tests:
+          - not_null
+          - unique
+  - name: dim_actor
+    columns:
+      - name: actor_id
+        description: ID of each actor
+        tests:
+          - not_null
+          - unique
