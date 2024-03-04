@@ -1,6 +1,7 @@
 
 
 select 
+    {{ dbt_utils.generate_surrogate_key(['address.address_id']) }} as address_key,
     address.address_id,
     address.address, 
     address.address2,

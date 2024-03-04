@@ -1,6 +1,7 @@
 
 
-select 
+select
+    {{ dbt_utils.generate_surrogate_key(['customer.customer_id']) }} as customer_key,
     customer.customer_id,
     address.address_id as customer_address_id,
     customer.active as customer_active, 

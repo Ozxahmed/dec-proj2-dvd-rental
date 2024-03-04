@@ -26,10 +26,10 @@ models:
         tests:
           - not_null
           - unique
-  - name: dim_actor
+  - name: dim_film_actor
     columns:
-      - name: actor_id
+      - name: film_actor_key
         description: ID of each actor
         tests:
           - not_null
-          - unique
+          - unique 
