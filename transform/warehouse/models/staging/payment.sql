@@ -1,6 +1,6 @@
 {{
     config(
-        incremental_strategy="amend"
+        incremental_strategy="append"
     )
 }}
 

@@ -1,4 +1,5 @@
 select 
+    {{ dbt_utils.generate_surrogate_key(['staff.staff_id']) }} as staff_key,
     staff.staff_id as staff_id,
     staff.store_id as staff_store_id, 
     staff.address_id as staff_address_id,
@@ -15,8 +16,6 @@ select
     city.city as staff_city,
     city.country_id as staff_country_id,
     country.country as staff_country
-
-
 from {{ ref('staff')}} as staff
 left join {{ ref('address')}} as address
     on staff.address_id = address.address_id
