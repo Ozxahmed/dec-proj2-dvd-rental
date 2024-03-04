@@ -1,6 +1,7 @@
 
 
-    select 
+    select
+        {{ dbt_utils.generate_surrogate_key(['film.film_id']) }} as film_key,
         film.film_id,
         l.language_id as film_language_id,
         l.language_name,
