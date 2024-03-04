@@ -16,8 +16,6 @@ select
     city.city as staff_city,
     city.country_id as staff_country_id,
     country.country as staff_country
-
-
 from {{ ref('staff')}} as staff
 left join {{ ref('address')}} as address
     on staff.address_id = address.address_id
