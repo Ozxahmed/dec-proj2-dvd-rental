@@ -15,7 +15,8 @@ select
     address.postal_code as staff_postal_code,
     city.city as staff_city,
     city.country_id as staff_country_id,
-    country.country as staff_country
+    country.country as staff_country,
+    staff.last_update as staff_last_update
 from {{ ref('staff')}} as staff
 left join {{ ref('address')}} as address
     on staff.address_id = address.address_id

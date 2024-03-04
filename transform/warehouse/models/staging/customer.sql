@@ -1,4 +1,10 @@
-
+{{
+    config(
+        materialized="incremental",
+        unique_key=["customer_id"],
+        incremental_strategy="delete+insert"
+    )
+}}
 
 select  
     customer_id,
@@ -11,6 +17,10 @@ select
     address_id,
     create_date,
     last_update
-    
 from {{ source('movie_rental', 'customer') }}
-order by last_update desc
+
+{% if is_incremental() %}
+    where last_update > (select max(last_update) from {{ this }} )
+{% endif %}
+
+order by last_update asc

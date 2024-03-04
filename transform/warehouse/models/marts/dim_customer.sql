@@ -16,7 +16,7 @@ select
     city.city_id as customer_city_id,
     country.country as customer_country,
     country.country_id as customer_country_id,
-    customer.last_update as customer_last_updated
+    customer.last_update as customer_last_update
 from {{ ref('customer')}} as customer
 left join {{ ref('address')}} as address
     on customer.address_id = address.address_id
