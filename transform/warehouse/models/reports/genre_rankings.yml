@@ -1,0 +1,12 @@
+models:
+  - name: genre_rankings_by_store
+    columns:
+      - name: category_name
+        tests:
+          - not_null
+  - name: genre_rankings_total
+    columns:
+      - name: category_name
+        tests:
+          - unique
+          - not_null

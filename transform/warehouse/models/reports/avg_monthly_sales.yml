@@ -1,0 +1,11 @@
+models:
+  - name: avg_monthly_sales
+    columns:
+      - name: avg_monthly_sale_$
+        tests:
+          - column_greater_or_equal:
+              value: 0
+      - name: total_sales_$
+        tests:
+          - column_greater_or_equal:
+              value: 0
