@@ -1,4 +1,8 @@
-
+{{
+    config(
+        incremental_strategy="amend"
+    )
+}}
 
 select 
     amount, 
