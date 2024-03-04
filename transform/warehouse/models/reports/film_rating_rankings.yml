@@ -1,0 +1,12 @@
+models:
+  - name: film_rating_rankings_by_store
+    columns:
+      - name: rating
+        tests:
+          - not_null
+  - name: film_rating_rankings_total
+    columns:
+      - name: rating
+        tests:
+          - unique
+          - not_null
