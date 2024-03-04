@@ -1,7 +1,6 @@
 
 
-select 
-    inventory_id,
+select
     film_id,
     store_id,
     last_update

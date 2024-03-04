@@ -1,4 +1,5 @@
 select 
+    {{ dbt_utils.generate_surrogate_key(['staff.staff_id']) }} as staff_key,
     staff.staff_id as staff_id,
     staff.store_id as staff_store_id, 
     staff.address_id as staff_address_id,
