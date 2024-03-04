@@ -5,7 +5,7 @@ warehouse: #profile name
       type: snowflake
       account: ikb44942.us-east-1
 
-      user: '{{ env_var("SNOWFLAKE_PASSWORD") }}'
+      user: '{{ env_var("SNOWFLAKE_USERNAME") }}'
       password: '{{ env_var("SNOWFLAKE_PASSWORD") }}'
 
       role: accountadmin
@@ -19,7 +19,7 @@ warehouse: #profile name
       type: snowflake
       account: ikb44942.us-east-1
 
-      user: '{{ env_var("SNOWFLAKE_PASSWORD") }}'
+      user: '{{ env_var("SNOWFLAKE_USERNAME") }}'
       password: '{{ env_var("SNOWFLAKE_PASSWORD") }}'
 
       role: accountadmin
