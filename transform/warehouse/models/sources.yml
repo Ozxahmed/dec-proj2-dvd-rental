@@ -1,5 +1,4 @@
 version: 2
-
 sources:
   - name: movie_rental
     database: movie_rental

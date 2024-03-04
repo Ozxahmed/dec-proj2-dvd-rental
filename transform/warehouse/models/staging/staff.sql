@@ -1,4 +1,10 @@
-
+{{
+    config(
+        materialized="incremental",
+        unique_key=["staff_id"],
+        incremental_strategy="delete+insert"
+    )
+}}
 
 select 
     email,
@@ -12,6 +18,10 @@ select
     last_name, 
     address_id,
     last_update
-    
 from {{ source('movie_rental', 'staff') }}
-order by last_update desc
+
+{% if is_incremental() %}
+    where last_update > (select max(last_update) from {{ this }} )
+{% endif %}
+
+order by last_update asc

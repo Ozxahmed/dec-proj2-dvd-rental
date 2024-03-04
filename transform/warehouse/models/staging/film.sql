@@ -1,4 +1,10 @@
-
+{{
+    config(
+        materialized="incremental",
+        unique_key=["film_id"],
+        incremental_strategy="delete+insert"
+    )
+}}
 
 select 
     title, 
@@ -14,6 +20,10 @@ select
     replacement_cost, 
     special_features,
     last_update
-    
 from {{ source('movie_rental', 'film') }}
-order by last_update desc
+
+{% if is_incremental() %}
+    where last_update > (select max(last_update) from {{ this }} )
+{% endif %}
+
+order by last_update asc
