@@ -1,5 +1,5 @@
 select 
      * 
-     from {{ ref('fact_rentals')}} as rentals 
+     from {{ ref('fct_rental')}} as rentals 
 
 
