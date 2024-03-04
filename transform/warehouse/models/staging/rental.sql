@@ -1,4 +1,10 @@
-
+{{
+    config(
+        materialized="incremental",
+        unique_key=["rental_id"],
+        incremental_strategy="delete+insert"
+    )
+}}
 
 select 
     staff_id, 
@@ -7,7 +13,11 @@ select
     rental_date, 
     return_date,
     inventory_id,
-    last_update
-    
+    last_update    
 from {{ source('movie_rental', 'rental') }}
-order by last_update desc
+
+{% if is_incremental() %}
+    where last_update > (select max(last_update) from {{ this }} )
+{% endif %}
+
+order by last_update asc

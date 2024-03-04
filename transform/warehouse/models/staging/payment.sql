@@ -11,6 +11,5 @@ select
     payment_id, 
     customer_id,
     payment_date
-    
 from {{ source('movie_rental', 'payment') }}
-order by payment_date desc
+order by payment_date asc

@@ -1,4 +1,10 @@
-
+{{
+    config(
+        materialized="incremental",
+        unique_key=["address_id"],
+        incremental_strategy="delete+insert"
+    )
+}}
 
 select 
     address_id,
@@ -9,6 +15,10 @@ select
     district, 
     postal_code, 
     last_update
-    
 from {{ source('movie_rental', 'address') }}
-order by last_update desc
+
+{% if is_incremental() %}
+    where last_update > (select max(last_update) from {{ this }} )
+{% endif %}
+
+order by last_update asc
