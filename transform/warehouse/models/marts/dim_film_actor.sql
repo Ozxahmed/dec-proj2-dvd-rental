@@ -3,6 +3,7 @@ select
     a.actor_id,
     a.first_name, 
     a.last_name,
+    {{ dbt_utils.generate_surrogate_key(['fa.film_id']) }} as film_key,
     fa.film_id,
     f.title,
     fa.film_actor_key
