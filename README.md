@@ -153,29 +153,29 @@ As stated earlier, our goal was to answer the following questions:
 
 We used Tableau to visualize these findings:
 
-- What film rating was the most rented? (Across All Stores)
+- **What film rating was the most rented? (Across All Stores)**
   - PG-13
   - NC-17
   - PG
 
-![film rating ranking](docs/images/movie_ratings.png)
+<img src="docs/images/movie_ratings.png" alt="drawing" width="400"/>
 
-- What genre was the most popular? (Across All Stores)
+- **What genre was the most popular? (Across All Stores)**
   - Sports
   - Animation
   - Action
 
 ![genre ranking](docs/images/genre_rankings.png)
 
-- What were top 10 actors with the most rented dvds?
+- **What were top actors with the most rented dvds?**
   - Gina Degeneres
   - Matthew Carrey
   - Mary Kietel
 
 ![top 10 actors](docs/images/top_10_actors.png)
 
-- Which store had the most revenue/month?
-  - Both were basically even, based on payments made.
+- **Which store had the most revenue/month?**
+  - There were two stores in total, and both were very even. (Based on payments made)
 
 ![revenue by store by month](docs/images/total_rev_per_store_per_month.png)
 
