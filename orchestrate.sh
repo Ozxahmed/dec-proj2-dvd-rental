@@ -1,1 +1,1 @@
-python -m integration.pipelines.airbyte_extract_load && cd transform/warehouse && dbt deps && dbt build --target prod
+python -m integrate.pipelines.airbyte_extract_load && cd transform/warehouse && dbt deps && dbt build --target prod
