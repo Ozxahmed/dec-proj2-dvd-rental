@@ -1,4 +1,4 @@
-# DVD Rental ELT Pipeline (Using Airbyte and DBT)
+# DVD Rental ELT Pipeline
 
 <p align="center">
   <img src="docs/images/dvd-old.gif" alt="animated" />
@@ -111,22 +111,22 @@ Here are some screenshots that demonstrate the CDC functionality working inside 
 
 1. **Insert Functionality**:
 
-   ![PostgreSQL insert query](docs\images\insert-query.png)
-   ![Airbyte insert extraction](docs\images\insert-airbyte.png)
-   ![Snowflake insert results](docs\images\insert-results.png)
+![PostgreSQL insert query](docs\images\insert-query.png)
+![Airbyte insert extraction](docs\images\insert-airbyte.png)
+![Snowflake insert results](docs\images\insert-results.png)
 
 2. **Update Functionality**:
 
-   ![PostgreSQL update query](docs\images\update-query.png)
-   ![Airbyte update extraction](docs\images\update-airbyte.png)
-   ![Snowflake update results on destination table](docs\images\update-results.png)
-   ![Updated record inside of airbyte_internals table](docs\images\update-results-2.png)
+![PostgreSQL update query](docs\images\update-query.png)
+![Airbyte update extraction](docs\images\update-airbyte.png)
+![Snowflake update results on destination table](docs\images\update-results.png)
+![Updated record inside of airbyte_internals table](docs\images\update-results-2.png)
 
 3. **Delete Functionality**:
 
-   ![PostgreSQL delete query](docs\images\hard-delete-query.png)
-   ![Snowflake delete results on destination table](docs\images\hard-delete-results.png)
-   ![Deleted record inside of airbyte_internals table](docs\images\hard-delete-results-2.png)
+![PostgreSQL delete query](docs\images\hard-delete-query.png)
+![Snowflake delete results on destination table](docs\images\hard-delete-results.png)
+![Deleted record inside of airbyte_internals table](docs\images\hard-delete-results-2.png)
 
 ## ER Diagrams
 
