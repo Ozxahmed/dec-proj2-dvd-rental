@@ -8,7 +8,7 @@
 
 This document provides an overview of the ELT project that utilizes Airbyte to extract data from an OLTP (Online Transactional Processing) DVD Rental database stored in PostgreSQL and load it into a "mock" OLAP data warehouse hosted within Snowflake for downstream processing.
 
-We wanted to answer the following business questions:
+The goal was to answer the following business questions:
 
 - What film rating was the most rented?
 - What genre was the most popular?
