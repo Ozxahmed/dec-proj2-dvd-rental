@@ -1,12 +1,14 @@
-# dec-proj2-dvd-rental
+# DVD Rental ELT Pipeline (Using Airbyte and DBT)
 
+![old dvd gif](docs/images/dvd-old.gif)
 
 ## Overview
 
 This document provides an overview of the ELT project that utilizes Airbyte to extract data from an OLTP (Online Transactional Processing) DVD Rental database stored in PostgreSQL and load it into a "mock" OLAP data warehouse hosted within Snowflake for downstream processing.
 
-
 ## Project Components
+
+![arch diagram](docs/images/arch_diagram.png)
 
 ### 1. Source Database: DVD Rental Database (OLTP)
 
@@ -29,10 +31,12 @@ Airbyte is the data extraction tool that was used in this project. It is an open
 
 The orchestrator responsible for running the workflow and calling each step in the correct order is a bash file. While there are more robust and specific tools for orchestrating data pipelines, this project focuses on understanding each step more deeply without having to worry about the orchestration part.
 
+### 6. BI Tool: Tableau
+>TO DO
 
 ## Project Workflow
 
-1. **Extraction (E)**: Airbyte connects to the PostgreSQL database and leverages the enabled Change Data Capture (CDC) functionality to extract data efficiently. CDC ensures that only the changed or updated data since the last extraction is captured. CDC also allows for the capture of hard deletes from source data. 
+1. **Extraction (E)**: Airbyte connects to the PostgreSQL database and leverages the enabled Change Data Capture (CDC) functionality to extract data efficiently. CDC ensures that only the changed or updated data since the last extraction is captured. CDC also allows for the capture of hard deletes from source data.
 
 2. **Loading (L)**: Airbyte loads the extracted data into Snowflake using the appropriate Snowflake connector. The data is loaded into a `raw` schema.
 
@@ -56,7 +60,7 @@ The orchestrator responsible for running the workflow and calling each step in t
     - The extracted data is then loaded into Snowflake for further processing and analysis.
 
 4. **Integrate Airbyte into ELT pipeline**:
-    - Create a Python code to programatically control Airbyte through its API. For more reference, go to https://api.airbyte.com/ to see how the API works.
+    - Create a Python code to programmatically control Airbyte through its API. For more reference, go to <https://api.airbyte.com/> to see how the API works.
     - In this project, the `integrate/pipelines/airbyte_extract_load.py` Python file hosts the code responsible for triggering the PostgreSQL - Snowflake connection sync.
     - In order to run the `integrate/pipelines/airbyte_extract_load.py` Python file, please provide the following environment variables:
         - `AIRBYTE_USERNAME`
@@ -77,7 +81,6 @@ The orchestrator responsible for running the workflow and calling each step in t
     - Package up the code and all the dependencies with Docker. The `Dockerfile` is responsible for assembling the necessary Docker image to run this project.
     - Push the Docker image to AWS ECR.
     - Create a Scheduled task in ECS to run the Docker container by pulling the Docker image from AWS ECR.
-
 
 ## CDC Functionality Screenshots
 
@@ -102,6 +105,8 @@ Here are some screenshots that demonstrate the CDC functionality working inside 
    ![Snowflake delete results on destination table](docs\images\hard-delete-results.png)
    ![Deleted record inside of airbyte_internals table](docs\images\hard-delete-results-2.png)
 
+## ER Diagrams
+>TO DO
 
 ## Conclusion
 
