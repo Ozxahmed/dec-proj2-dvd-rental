@@ -17,7 +17,7 @@ The goal was to answer the following business questions:
 
 ## Project Components
 
-![arch diagram](docs/images/arch_diagram.png)
+![arch diagram](docs/images/arch_diagram_updated.png)
 
 ### 1. Source Database: DVD Rental Database (OLTP)
 
