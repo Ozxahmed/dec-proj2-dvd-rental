@@ -1,10 +1,6 @@
-<<<<<<< Updated upstream
-{% set film_ratings = ["PG", "NC-17", "R", "G", "PG-13"] %}
-=======
 {% set film_ratings = dbt_utils.get_column_values(table=ref('film'), column="rating") %}
     -- dbt_utils.get_column_values(): Get's the unique/distinct values within the column
     -- https://github.com/dbt-labs/dbt-utils/tree/1.1.1/#get_column_values-source 
->>>>>>> Stashed changes
 
 select
     year(p.payment_date) as year,
