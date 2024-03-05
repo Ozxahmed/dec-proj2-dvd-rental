@@ -1,10 +1,19 @@
 # DVD Rental ELT Pipeline (Using Airbyte and DBT)
 
-![old dvd gif](docs/images/dvd-old.gif)
+<p align="center">
+  <img src="docs/images/dvd-old.gif" alt="animated" />
+</p>
 
 ## Overview
 
 This document provides an overview of the ELT project that utilizes Airbyte to extract data from an OLTP (Online Transactional Processing) DVD Rental database stored in PostgreSQL and load it into a "mock" OLAP data warehouse hosted within Snowflake for downstream processing.
+
+We wanted to answer the following business questions:
+
+- What film rating was the most rented?
+- What genre was the most popular?
+- What were the actors with the most rented dvds? (top 10)
+- Which store had the most revenue/month?
 
 ## Project Components
 
@@ -22,17 +31,19 @@ Snowflake is the destination data warehouse where the extracted data from the DV
 
 ### 3. Data Extraction Tool: Airbyte
 
-Airbyte is the data extraction tool that was used in this project. It is an open-source project and it is responsible for extracting data from our source database and loading it into our Data Warehouse (Snowflake).
+Airbyte is the data extraction tool that was used in this project. It is an open-source project and it is responsible for extracting data from our source database and loading it into the 'Raw Schema' within our Data Warehouse (Snowflake).
 
 ### 4. Data Transformation Tool: dbt
->TO DO
+
+For our transformations, we utilized DBT (Data Build Tool) to achieve streamlined and modular data transformation. DBT not only facilitates data transformation but also supports testing to ensure the accuracy of our transformations and final tables. The process involves DBT gathering raw data loaded into Snowflake, transforming it, and subsequently loading it into user-defined schemas. In our specific case, these schemas include Staging, Marts, and Reports. Thus, our data flow follows this sequence: Raw Schema → DBT → Creation of schemas (Staging, Marts, Reports) and all associated tables within these schemas.
 
 ### 5. Orchestrator: `orchestrate.sh` bash file
 
 The orchestrator responsible for running the workflow and calling each step in the correct order is a bash file. While there are more robust and specific tools for orchestrating data pipelines, this project focuses on understanding each step more deeply without having to worry about the orchestration part.
 
 ### 6. BI Tool: Tableau
->TO DO
+
+Tableau is the BI tool we chose to create visualizations and analysis of our transformed data.
 
 ## Project Workflow
 
@@ -70,8 +81,20 @@ The orchestrator responsible for running the workflow and calling each step in t
         - `SNOWFLAKE_USERNAME`
         - `SNOWFLAKE_PASSWORD`
 
-5. **Transform the data**:
-    - >TO DO
+5. **Transform the Data:**
+    - Install dbt and the dbt plugin for Snowflake using the following commands in the terminal (bash):
+
+    ```bash
+    pip install dbt-core==1.7.0
+
+    pip install dbt-snowflake==1.7.0
+    ```
+
+    - Run `dbt init` in the Command Line Interface (CLI) to initialize DBT and start a new project.
+    - Provide the project's name, creating a dedicated folder within the directory where DBT was initialized.
+    - The `models` folder within this directory is where transformations are defined.
+    - Each folder in the `models` folder represents a schema within the database, with each file within these folders representing a model for a table in the schema.
+    - Define the transformations for each model using DBT's Snowflake SQL syntax.
 
 6. **Orchestrate Workflow**:
     - Create a bash file to run the workflow and call each step in the correct order.
@@ -106,8 +129,54 @@ Here are some screenshots that demonstrate the CDC functionality working inside 
    ![Deleted record inside of airbyte_internals table](docs\images\hard-delete-results-2.png)
 
 ## ER Diagrams
->TO DO
+
+### Original DVD Rental ERD
+
+![og dvd rental database erd](docs/images/dvd-rental-og-database-diagram.png)
+
+### Marts Schema ERD
+
+![Marts](docs/images/marts_ERD.jpeg)
+
+### Reports Schema ERD
+
+![reports erd](docs/images/reports_erd.png)
 
 ## Conclusion
 
-This documentation provides an overview of the ELT project utilizing Airbyte to extract data from a PostgreSQL database, leveraging the Change Data Capture (CDC) functionality for efficient data extraction, and loading it into Snowflake for analytical purposes. By following the outlined steps and best practices, organizations can efficiently manage their data pipeline, enabling informed decision-making and analysis.
+As stated earlier, our goal was to answer the following questions:
+
+- What movie rating was the most rented? (Across All Stores)
+- What genre was the most popular? (Across All Stores)
+- What were top 10 actors with the most rented dvds?
+- Which store had the most revenue/month?
+
+We used Tableau to visualize these findings:
+
+- What film rating was the most rented? (Across All Stores)
+  - PG-13
+  - NC-17
+  - PG
+
+![film rating ranking](docs/images/movie_ratings.png)
+
+- What genre was the most popular? (Across All Stores)
+  - Sports
+  - Animation
+  - Action
+
+![genre ranking](docs/images/genre_rankings.png)
+
+- What were top 10 actors with the most rented dvds?
+  - Gina Degeneres
+  - Matthew Carrey
+  - Mary Kietel
+
+![top 10 actors](docs/images/top_10_actors.png)
+
+- Which store had the most revenue/month?
+  - Both were basically even, based on payments made.
+
+![revenue by store by month](docs/images/total_rev_per_store_per_month.png)
+
+Overall, this documentation provides an overview of the ELT project utilizing Airbyte to extract data from a PostgreSQL database, leveraging the Change Data Capture (CDC) functionality for efficient data extraction, and loading it into Snowflake for analytical purposes. By following the outlined steps and best practices, organizations can efficiently manage their data pipeline, enabling informed decision-making and analysis.
