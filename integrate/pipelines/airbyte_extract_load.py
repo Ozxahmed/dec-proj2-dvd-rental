@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from integration.connectors.airbyte import AirbyteClient
+from integrate.connectors.airbyte import AirbyteClient
 
 
 if __name__ == "__main__":
